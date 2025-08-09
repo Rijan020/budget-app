@@ -77,3 +77,12 @@ export async function clearTransactions() {
   const db = await initDB();
   return db.clear(STORE_TRANSACTIONS);
 }
+// Bulk add transactions
+export async function bulkAddTransactions(transactions) {
+  const db = await initDB();
+  const tx = db.transaction(STORE_TRANSACTIONS, 'readwrite');
+  for (const txn of transactions) {
+    await tx.store.add(txn);
+  }
+  await tx.done;
+}
