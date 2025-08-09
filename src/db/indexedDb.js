@@ -71,3 +71,9 @@ export async function deleteRecurring(id) {
   const db = await initDB();
   return db.delete(STORE_RECURRING, id);
 }
+
+// Clear all transactions
+export async function clearTransactions() {
+  const db = await initDB();
+  return db.clear(STORE_TRANSACTIONS);
+}
